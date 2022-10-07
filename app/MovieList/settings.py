@@ -124,6 +124,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# link to remote json for loading movies
+MOVIE_LIST_SOURCE = 'https://gist.githubusercontent.com/nextsux/f6e0327857c88caedd2dab13affb72c1/raw/04441487d90a0a05831835413f5942d58026d321/videos.json'
+
+# periodicaly run cronjobs
+# '* * * * *' -> executes every minute
 CRONJOBS = [
     ('* * * * *', 'MovieListApp.cron.load_movie_list', '>> /cron/django_cron.log 2>&1'),
 ]
