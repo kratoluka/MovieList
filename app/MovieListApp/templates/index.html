@@ -1,4 +1,30 @@
 {% if movie_list %}
+
+<form>
+    <span>Sort by:</span>
+    <select name="sort">
+        {% for value, text in sort_options.items %}
+            {% if sort == value %}
+                <option selected value="{{ value }}">{{ text }}</option>
+            {% else %}
+                <option value="{{ value }}">{{ text }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <span>Filter:</span>
+    <select name="filter">
+        {% for value, text in filter_options.items %}
+            {% if filter == value %}
+                <option selected value="{{ value }}">{{ text }}</option>
+            {% else %}
+                <option value="{{ value }}">{{ text }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go" style="margin-left: 4px;">
+</form>
+
 <ul>
     {% for movie in movie_list %}
     {% if not movie.disabled %}
@@ -7,23 +33,28 @@
         <img src="{{ movie.icon_url }}" alt="{{ movie.short_name }}"/><br>
         {% if movie.short_name %}
         <l1>
-                Short name: {{ movie.short_name }}
-        </l1><br>
+            Short name: {{ movie.short_name }}
+        </l1>
+        <br>
         {% endif %}
         {% if movie.description %}
         <l1>
             Description: {{ movie.description }}
-        </l1><br>
+        </l1>
+        <br>
         {% endif %}
         {% if movie.date_added %}
         <l1>
             Date added: {{ movie.date_added }}
-        </l1><br>
+        </l1>
+        <br>
         {% endif %}
     </div>
     {% endif %}
     {% endfor %}
 </ul>
+
 {% else %}
 <p>No movies are available.</p>
+
 {% endif %}
