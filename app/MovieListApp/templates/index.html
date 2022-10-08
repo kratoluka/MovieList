@@ -1,0 +1,29 @@
+{% if movie_list %}
+<ul>
+    {% for movie in movie_list %}
+    {% if not movie.disabled %}
+    <div style="border: 2px solid black; margin-bottom: 4px;">
+        <h3>{% if movie.is_featured %}Featured: {% endif %}{{ movie.name }}</h3>
+        <img src="{{ movie.icon_url }}" alt="{{ movie.short_name }}"/><br>
+        {% if movie.short_name %}
+        <l1>
+                Short name: {{ movie.short_name }}
+        </l1><br>
+        {% endif %}
+        {% if movie.description %}
+        <l1>
+            Description: {{ movie.description }}
+        </l1><br>
+        {% endif %}
+        {% if movie.date_added %}
+        <l1>
+            Date added: {{ movie.date_added }}
+        </l1><br>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% else %}
+<p>No movies are available.</p>
+{% endif %}
