@@ -19,6 +19,7 @@ def load_movie_list():
     print(datetime.now())
     for mov in data:
         print(mov['name'])
+        # create database entry
         Movie.objects.update_or_create(
             name=mov['name'],
             short_name=mov['shortName'],

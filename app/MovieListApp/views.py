@@ -4,6 +4,9 @@ from datetime import datetime, timedelta
 
 
 def index(request):
+    # sort and filter options list to pass to html
+    # key for value that is passed back
+    # value for text that is displayed
     sort_options = {
         'date_added': 'Date added',
         'name': 'Name',
@@ -17,13 +20,15 @@ def index(request):
         'new_this_year': 'This year'
     }
 
+    # get current sort and filter
     sort = request.GET.get('sort', 'date_added')
     filt = request.GET.get('filter', '')
 
+    # load movie list
     movie_list = Movie.objects.all()
 
     if sort:
-        if sort == 'is_featured':
+        if sort == 'is_featured':  # is_featured has to be sorted in reverse
             movie_list = movie_list.order_by('-is_featured')
         else:
             movie_list = movie_list.order_by(sort)
@@ -32,7 +37,7 @@ def index(request):
         now = datetime.now()
         if filt == 'is_featured':
             movie_list = movie_list.filter(is_featured=True)
-        elif filt == 'new_this_week':
+        elif filt == 'new_this_week':  # filter by date using range
             movie_list = movie_list.filter(date_added__range=[now - timedelta(days=7), now])
         elif filt == 'new_this_month':
             movie_list = movie_list.filter(date_added__range=[now - timedelta(days=30), now])
