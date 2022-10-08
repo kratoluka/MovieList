@@ -3,7 +3,7 @@ Backend application in Django to display a list of movies loaded from API.
 Application runs in docker to enable use of crontab for periodic tasks.  
 Periodically loads a list of movies from API into sqlite3 database.  
 Displays a simple front-end to show the movies from database and their information.  
-Allows for sorting a filtering of movies.  
+Allows for sorting and filtering of movies.  
   
 Run `docker-compose up` to start the docker.  
   
